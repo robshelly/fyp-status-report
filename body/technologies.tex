@@ -1,0 +1,30 @@
+\section{Technologies}
+
+\subsection{Docker}
+Docker is a container platform for building and managing applications. This project is interested not in Dockers platform but rather in the Docker images that run on the platform. A container image is a modular piece of software. It encapsulates all the code and tools needed to run the software packaged in the image. The image can then be run in a container on any environment using a container platform or service. Thus, it runs independent of the hardware or operating system. The container also isolates the software from other images and software running within the environment \citep{docker}.
+
+The modularity of software makes Docker images appealing for this project. It will allow testing various data base types (e.g. MongoDB, MySQL) through it's software agnostic feature, by deploying an image with the corresponding DBMS software.
+
+\subsection{Amazon Web Services}
+The project will make extensive use of Amazon Web Services (AWS) with most or possibly all of the systems infrastructure deployed on AWS. More specifically the project will make use of two specific Elastic Compute Cloud (EC2) and EC2 Containers Service (ECS).
+
+EC2 is Amazons compute services. It allows easy deployment and management of virtual compute resource within the cloud. The flexibility of operating systems, virtual machine (or instances and they are known in AWS) size of volume of storage make it ideal for this project \citep{ec2}.
+
+ECS is Amazons service for running Docker images. It allows Docker images to be easily deployed to EC2 instances without the need to install Docker on the instances. There is no added cost for using ECS. i.e. the customer only pays for the EC2 instances \citep{ecs}. 
+
+ECS is an appealing platform for running Docker images for the following reasons.
+\begin{itemize}
+	\item Images can be deployed on EC2 instances, meaning there is no need to install Docker on the instance, without any extra charge.
+	\item Containers are created within the customers own EC2 instances, meaning they are not exposed to other AWS customers. The are secured by the same infrastructure created by the customer for their instances, for example Virtual Private Clouds (VPCs) and Security Groups.
+	
+\end{itemize}
+
+
+\subsection{Jenkins}
+Jenkins is an automated build server. It can be used to implement continuous integration (CI) and continuous delivery (CD). Configuration and management of the server can be achieved using both a web interface and an API. Jenkins service is also extensible through a library of plugins \citep{jenkins}. One plugin which will be of particular interest to this project is the Pipeline plugin. It allows the creation of pipeline as code.This means that for this project, pipelines can be used to create EC2 instances and deploy the necessary Docker images using ECS in order to test backup. Utilising the API, this can be achieved through a user-friendly web based frontend for user who are not familiar with Jenkins.
+
+
+
+% TODO Write sections on more technologies as the are implemented
+
+

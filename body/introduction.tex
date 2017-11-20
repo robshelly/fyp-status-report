@@ -1,0 +1,22 @@
+\section{Introduction}
+
+\subsection{Problem Statement}
+In January 2017 GitLab suffered a data loss incident which was widely reported in media. It began with spammers targeting GitLab.com and culminated in an engineer erroneously deleting 300GB of PostgreSQL data in a production. The lost data included merger requests, users and comments \citep{gitlab1}. The bigger story was to come later however when it was realised that GitLabs backup process had failed silently. The backups did not exist, resulting in a total loss of the data. As it transpired, conflicting major versions of \textit{pg\_dump} (a utility for backing up PostgreSQL databases) in use for the backup procedure and the PostgreSQL database resulted in an error, and the procedure failing \citep{gitlab2}.
+
+The incident was widely reported in the tech industry with the story being picked up by a number of outlets including TechCrunch \citeyearpar{lomas} and The Register \citeyearpar{sharwood}. For many, the focal point of the story was the failed backups. The incident highlighted the need for regular verification of backups. A simple way of performing this verification is to regularly restore data. The method of verification is to perform a restore of the data, which can be a mundane and time consuming task. The aim of this project is to create a solution to the issue. A system which can notify administrators when backups have failed may have prevented the data loss in the GitLab ordeal.
+
+\subsection{Aims \& Objectives}
+The overall objective is to create a system to test that uncorrupted backups exist and contain valid, readable data. A system will be created that allows sysadmins to test backups and to schedule the regular testing of backups. Thus, the system will have two main objectives:
+
+\begin{itemize}
+	\item Eliminate the mundane and time consuming task of backup testing by automating regular tests;
+	\item Catch silent failures of the backup procedure by notifying sysadmins of failed backups.
+\end{itemize}
+
+\noindent The system will focus on backups of databases. For scope, design will focus on testing MongoDB data and MySQL data, thereby providing a sample of both relational and non-relational database management systems (DBMS). However, the system should be designed such that it can easily modified to test data from others forms of database management systems. As part of the system, the following should be implemented:
+
+\begin{itemize}
+	\item \textbf{Web app:} This will act as a front end for the sysadmins run and schedule tests and view results.
+	\item \textbf{Automation Server:} This will be the backend of the system. It will take care of retrieving the backup data before performing some sorts of tests.
+	\item \textbf{Container Platform:} This will be utilised by the backend to test the server. For example, when testing the data from a MongoDB database, the backend will spin up a container with MongoDB installed in order to verify the data. 
+\end{itemize}
