@@ -6,8 +6,14 @@ In January 2017 GitLab suffered a data loss incident which was widely reported i
 The incident was widely reported in the tech industry with the story being picked up by a number of outlets including TechCrunch \citeyearpar{lomas} and The Register \citeyearpar{sharwood}. For many, the focal point of the story was the failed backups. The incident highlighted the need for regular verification of backups. A simple way of performing this verification is to regularly restore data. The method of verification is to perform a restore of the data, which can be a mundane and time consuming task. The aim of this project is to create a solution to the issue. A system which can notify administrators when backups have failed may have prevented the data loss in the GitLab ordeal.
 
 \subsection{Aims \& Objectives}
+<<<<<<< HEAD
 The overall objective is to create a system to test that uncorrupted backups exist and contain valid, readable data. A system will be created that allows sysadmins to test backups and to schedule the regular testing of backups. This will be achived by performing restoration on the backups. The main objectives of the system are as follows:
 
+% * <pyates@redhat.com> 2017-11-20T12:10:47.082Z:
+% 
+% Good, but I think there are more than two objectives - I believe your system will also reduce costs (creating/deletion of containers) and also offer Security (better management of keys/customer data).    Just reminding you of these points - you might have already decided to just focus on the two objectives you have mentioned? 
+% 
+% ^.
 \begin{itemize}
 	\item Eliminate the mundane and time consuming task of backup testing by automating regular backup restorations and recording results;
 	\item Catch silent failures of the backup procedure by notifying sysadmins of failed backups;
