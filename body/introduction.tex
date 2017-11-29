@@ -6,11 +6,13 @@ In January 2017 GitLab suffered a data loss incident which was widely reported i
 The incident was widely reported in the tech industry with the story being picked up by a number of outlets including TechCrunch \citeyearpar{lomas} and The Register \citeyearpar{sharwood}. For many, the focal point of the story was the failed backups. The incident highlighted the need for regular verification of backups. A simple way of performing this verification is to regularly restore data. The method of verification is to perform a restore of the data, which can be a mundane and time consuming task. The aim of this project is to create a solution to the issue. A system which can notify administrators when backups have failed may have prevented the data loss in the GitLab ordeal.
 
 \subsection{Aims \& Objectives}
-The overall objective is to create a system to test that uncorrupted backups exist and contain valid, readable data. A system will be created that allows sysadmins to test backups and to schedule the regular testing of backups. Thus, the system will have two main objectives:
+The overall objective is to create a system to test that uncorrupted backups exist and contain valid, readable data. A system will be created that allows sysadmins to test backups and to schedule the regular testing of backups. This will be achived by performing restoration on the backups. The main objectives of the system are as follows:
 
 \begin{itemize}
-	\item Eliminate the mundane and time consuming task of backup testing by automating regular tests;
-	\item Catch silent failures of the backup procedure by notifying sysadmins of failed backups.
+	\item Eliminate the mundane and time consuming task of backup testing by automating regular backup restorations and recording results;
+	\item Catch silent failures of the backup procedure by notifying sysadmins of failed backups;
+	\item Reduce the cost of backup restoration testing by automating the process of creating the necessary infrastructure (such as virtual machines on AWS), performing the restoration and destroying the infrastructure once results are obtained, thus minimising the uptime of infrastructure;
+	\item Performs the restoration check in a secure manner by managing encryption keys and the movement and decryption of data only when necessary in safe environment.
 \end{itemize}
 
 \noindent The system will focus on backups of databases. For scope, design will focus on testing MongoDB data and MySQL data, thereby providing a sample of both relational and non-relational database management systems (DBMS). However, the system should be designed such that it can easily modified to test data from others forms of database management systems. As part of the system, the following should be implemented:
