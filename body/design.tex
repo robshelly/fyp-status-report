@@ -25,7 +25,7 @@
 	\subsection{Formal Modelling}
 	\subsubsection{Sequence Diagrams}
 	
-		The main function of the systems have been demonstrated below in sequence diagrams. \autoref{fig:seq-run-restore} shows the process of running a single backup restore. This involves a user manually triggering a restoration using the web interface. The trigger a Jenkins job automates the remaining steps. The backup is copied from the backup server to the test restoration server where it is imported to a Database Management System such as MongoDB. A read of the data is then performed to verify that the data is uncorrupted and readable. Finally it is detroyed from the restoration server.
+		The main function of the systems have been demonstrated below in sequence diagrams. \autoref{fig:seq-run-restore} shows the process of running a single backup restore. This involves a user manually triggering a restoration using the web interface. The trigger a Jenkins job automates the remaining steps. The backup is copied from the backup server to the test restoration server where it is imported to a Database Management System such as MongoDB. A read of the data is then performed to verify that the data is uncorrupted and readable. Finally it is de\added[id=RB]{s}troyed from the restoration server.\note[id=RB]{Figure 2 is good, shows the sequence in a clear way}
 		\begin{figure}[H]
 			\setlength{\belowcaptionskip}{15pt plus 3pt minus 2pt}
 			\caption{Run Restore}
@@ -34,7 +34,7 @@
 			\label{fig:seq-run-restore}
 		\end{figure}
 
-		\noindent \autoref{fig:seq-schedule-restore} shows the process of a scheduling regular backup restoration tests. Again, this is triggered by a user from the web interface. The web interface will passes the JSON or xml configuration for a job to the Jenkins server. The server will then create and save the job. A status indicating whether the job was created successfully is returned to the user. 
+		\noindent \autoref{fig:seq-schedule-restore} shows the process of a scheduling regular backup restoration tests. Again, this is triggered by a user from the web interface. The web interface will pass\deleted[id=RB]{e}s the JSON or xml configuration for a job to the Jenkins server. The server will then create and save the job. A status indicating whether the job was created successfully is returned to the user. \note[id=RB]{Figure 3 is good too. Maybe here somewhere you could talk about what happens when the scheduled job runs - how does the user get notified about success/failure when they're not currently using the web app?}
 		\begin{figure}[H]
 			\setlength{\belowcaptionskip}{15pt plus 3pt minus 2pt}
 			\caption{Schedule Regular Restore}

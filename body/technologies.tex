@@ -8,9 +8,9 @@ The modularity of software makes Docker images appealing for this project. It wi
 \subsection{Amazon Web Services}
 The project will make extensive use of Amazon Web Services (AWS) with most or possibly all of the systems infrastructure deployed on AWS. More specifically the project will make use of two specific services; Elastic Compute Cloud (EC2) and EC2 Containers Service (ECS).
 
-EC2 is Amazons compute services. It allows easy deployment and management of virtual compute resource within the cloud. The flexibility of operating systems, virtual machine (or instances and they are known in AWS) size of volume of storage make it ideal for this project \citep{ec2}.
+EC2 is Amazon\added[id=RB]{'}s compute service\deleted[id=RB]{s}. It allows easy deployment and management of virtual compute resource\added[id=RB]{s} within the cloud. The flexibility of operating systems, virtual machine\added[id=RB]{s} (or instances \replaced[id=RB]{as}{and} they are known in AWS) \added[id=RB]{and} size of volume of storage make it ideal for this project \citep{ec2}.
 
-ECS is Amazons container management service. It allows Docker images to be easily deployed to and run on  EC2 instances without the need to install Docker on the instances. ECS takes care of much of the container management issues that would arise when deploying a services if implemented though Docker alone. This includes managing port mappings between container ports and host ports, ensuring all containers are accessible if necessary. There is no added cost for using ECS. i.e. the customer only pays for the EC2 instances \citep{ecs}. 
+ECS is Amazon\added[id=RB]{'}s container management service. It allows Docker images to be easily deployed to and run on  EC2 instances without the need to install Docker on the instances. ECS takes care of much of the container management issues that would arise when deploying a services if implemented though Docker alone. This includes managing port mappings between container ports and host ports, ensuring all containers are accessible if necessary. There is no added cost for using ECS. i.e. the customer only pays for the EC2 instances \citep{ecs}. 
 
 ECS is an appealing platform for running Docker images for the following reasons.
 \begin{itemize}
@@ -24,11 +24,11 @@ ECS is an appealing platform for running Docker images for the following reasons
 Jenkins is an automated build server. It can be used to implement continuous integration (CI) and continuous delivery (CD). Configuration and management of the server can be achieved using both a web interface and an API. Jenkins service is also extensible through a library of plugins \citep{jenkins}. One plugin which will be of particular interest to this project is the Pipeline plugin. It allows the creation of pipeline as code.This means that for this project, pipelines can be used to create EC2 instances and deploy the necessary Docker images using ECS in order to test backup. Utilising the API, this can be achieved through a user-friendly web based frontend for user who are not familiar with Jenkins.
 
 \subsection{Node}
-The frontend of the system will be designed using Node (also known as Node.js). Node is a JavaScript runtime environment for build network applications. It is light-weight and efficient framework through it's event driven, no blocking I/O implementation. 
+The frontend of the system will be designed using Node (also known as Node.js). Node is a JavaScript runtime environment for build network applications. It is light-weight and efficient framework through \replaced[id=RB]{its}{it's} event driven, no blocking I/O implementation. 
 
 The default package manager of Node is \textit{npm} (for Node Package manager). It is the worlds largest software registry \citep{npm}. The vast registry of free and open source packages available through make Node an attractive choice for this project. Of particular interest are the multiple Node clients for Jenkins. These are Node wrappers for the Jenkins REST API enabling easy integration of the frontend with the Jenkins backend.
 
 \subsection{React}
 The UI element of the frontend will be built using React, a JavaScript library available through \textit{npm} for building user interfaces. React is developed to work independently of other technologies, meaning it can integrated easily with Node and other \textit{npm} packages without the needs for refactoring. React builds UI's as a set of components, each managing and their own state and implementing their own render function. This allows fast and efficient of rendering as data changes as only components that are updated will be re-rendered. 
-
+\note[id=RB]{The technologies section is looking good content-wise, just needs a good proofread to remove any typos}
 
