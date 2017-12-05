@@ -8,27 +8,38 @@ The modularity of software makes Docker images appealing for this project. It wi
 \subsection{Amazon Web Services}
 The project will make extensive use of Amazon Web Services (AWS) with most or possibly all of the systems infrastructure deployed on AWS. More specifically the project will make use of two specific services; Elastic Compute Cloud (EC2) and EC2 Containers Service (ECS).
 
-EC2 is Amazon\added[id=RB]{'}s compute service\deleted[id=RB]{s}. It allows easy deployment and management of virtual compute resource\added[id=RB]{s} within the cloud. The flexibility of operating systems, virtual machine\added[id=RB]{s} (or instances \replaced[id=RB]{as}{and} they are known in AWS) \added[id=RB]{and} size of volume of storage make it ideal for this project \citep{ec2}.
+EC2 is Amazon's compute service. It allows easy deployment and management of virtual compute resources within the cloud. The flexibility of operating systems, virtual machines (or instances as they are known in AWS) and size of volume of storage make it ideal for this project \citep{ec2}. It will allow the system to create instances with only the necessary resources required (i.e. memory and storage) to test the restoration of a given backup. This keeps the cost of testing to a minimum in keeping with Aim \ref{ao3}.
 
-ECS is Amazon\added[id=RB]{'}s container management service. It allows Docker images to be easily deployed to and run on  EC2 instances without the need to install Docker on the instances. ECS takes care of much of the container management issues that would arise when deploying a services if implemented though Docker alone. This includes managing port mappings between container ports and host ports, ensuring all containers are accessible if necessary. There is no added cost for using ECS. i.e. the customer only pays for the EC2 instances \citep{ecs}. 
+ECS is Amazon's container management service. It allows Docker images to be easily deployed to and run on  EC2 instances without the need to install Docker on the instances. ECS takes care of much of the container management issues that would arise when deploying a services if implemented through Docker alone. This includes managing port mappings between container ports and host ports, ensuring all containers are accessible if necessary. There is no added cost for using ECS. i.e. the customer only pays for the EC2 instances \citep{ecs}. 
 
 ECS is an appealing platform for running Docker images for the following reasons.
 \begin{itemize}
 	\item Images can be deployed on EC2 instances, meaning there is no need to install Docker on the instance, without any extra charge.
 	\item Containers are created within the customers own EC2 instances, meaning they are not exposed to other AWS customers. The are secured by the same infrastructure created by the customer for their instances, for example Virtual Private Clouds (VPCs) and Security Groups.
-	
 \end{itemize}
+
+AWS also features a  command line interface for building, modifying and destroying infrastructure across all of it's service, including EC2 and ECS. This provides an programmatic method of creating the resources necessary to perform test restorations. The ability to do so allows for the automation of the infrastructure creation and destruction (after testing). This is an objective of the project set out in Aim \ref{ao1}. 
 
 
 \subsection{Jenkins}
-Jenkins is an automated build server. It can be used to implement continuous integration (CI) and continuous delivery (CD). Configuration and management of the server can be achieved using both a web interface and an API. Jenkins service is also extensible through a library of plugins \citep{jenkins}. One plugin which will be of particular interest to this project is the Pipeline plugin. It allows the creation of pipeline as code.This means that for this project, pipelines can be used to create EC2 instances and deploy the necessary Docker images using ECS in order to test backup. Utilising the API, this can be achieved through a user-friendly web based frontend for user who are not familiar with Jenkins.
+Jenkins is an automated build server. It can be used to implement continuous integration (CI) and continuous delivery (CD). Configuration and management of the server can be achieved using both a web interface and an API. Jenkins service is also extensible through a library of plugins \citep{jenkins}. One plugin which will be of particular interest to this project is the Pipeline plugin. It allows the creation of pipeline as code. This means that for this project, pipelines can be used to create EC2 instances and deploy the necessary Docker images using ECS in order to test backup.
+ 
+Jenkins was chosen as a backend service for this project as it, along with it's library of plugins, presents many useful features which will be beneficial to the implementation of the system. These include the following:
+\begin{itemize}
+	\item A built in email notification system which can be used to notify users of silently failed backups. This provided the functionality to implement a satisfactory solution to Aim \ref{ao2};
+	\item A Credentials plugin which provides a means of storing various credentials in various forms (e.g. username/password pairs, SSH keys) along with a standard API for Jenkins and other plugins to access and use these credentials \citep{connolly}. This provides a secure manner for using SSH keys for backups servers as well as encryption keys for sensitive backups. This is a key objective of the project outlined in Aim \ref{ao4}.
+	\item The ability to schedule jobs to run at regular intervals will provide the functionality described in Aim \ref{ao1}. This eliminates the need for the development of a scheduling system in order to fulfil the systems requirements. 
+	\item The REST API can be used to by a user-friendly web based frontend, allowing users who unfamiliar with Jenkins or AWS to perform test restorations. 
+\end{itemize}
+
 
 \subsection{Node}
-The frontend of the system will be designed using Node (also known as Node.js). Node is a JavaScript runtime environment for build network applications. It is light-weight and efficient framework through \replaced[id=RB]{its}{it's} event driven, no blocking I/O implementation. 
+The frontend of the system will be designed using Node (also known as Node.js). Node is a JavaScript runtime environment for building network applications. It is light-weight and efficient framework through its event driven, no blocking I/O implementation. 
 
 The default package manager of Node is \textit{npm} (for Node Package manager). It is the worlds largest software registry \citep{npm}. The vast registry of free and open source packages available through make Node an attractive choice for this project. Of particular interest are the multiple Node clients for Jenkins. These are Node wrappers for the Jenkins REST API enabling easy integration of the frontend with the Jenkins backend.
 
+Although any of a number of frameworks could have been used, for example Django, Node was chosen for this project due it's light-weight design and extensibility through \textit{npm}, including the aforementioned Jenkins API wrappers.
+ 
 \subsection{React}
-The UI element of the frontend will be built using React, a JavaScript library available through \textit{npm} for building user interfaces. React is developed to work independently of other technologies, meaning it can integrated easily with Node and other \textit{npm} packages without the needs for refactoring. React builds UI's as a set of components, each managing and their own state and implementing their own render function. This allows fast and efficient of rendering as data changes as only components that are updated will be re-rendered. 
-\note[id=RB]{The technologies section is looking good content-wise, just needs a good proofread to remove any typos}
+The UI element of the frontend will be built using React, a JavaScript library available through \textit{npm} for building user interfaces. React is developed to work independently of other technologies, meaning it can integrated easily with Node and other \textit{npm} packages without the need for refactoring. React builds UI's as a set of components, each managing and their own state and implementing their own render function. This allows fast and efficient of rendering as data changes as only components that are updated will be re-rendered.
 
