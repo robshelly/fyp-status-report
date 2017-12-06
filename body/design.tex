@@ -1,3 +1,5 @@
+% Word count: 1123
+
 \section{Design}
 	\subsection{System Architecture Overview}
 		The system will comprise of three main components:
@@ -6,7 +8,7 @@
 			\item User Interface
 			\item Disposable instances/containers
 		\end{itemize}
-		The system will also use existing infrastructure. This is where the backups are stored. Depending on the user of the system there may be multiple backup server in different location (such as AWS regions) or for different data types (relational and non-relational databases). Backup data may be stored in a variety of ways such as on EC2 instance or S3 buckets.
+		The system will also use existing ECS instances i.e  where backups are stored. Depending on the user of the system there may be multiple backup servers in different location (such as AWS regions) or for different data types (relational and non-relational databases).
 		
 		\begin{figure}[H]
 			\setlength{\belowcaptionskip}{15pt plus 3pt minus 2pt}
@@ -20,12 +22,23 @@
 		
 		\noindent \textbf{User Interface:} This will provide a simple user interface (UI) for the system, implemented as a simple web app, hosted on AWS.It will allow users with little knowledge of Jenkins and AWS to perform backup restoration checks by adding a layer of abstraction. Users will be able to run restorations by providing the parameters such as the backup file and it's location. The UI will utilise the Jenkins API to run execute the restoration with the parameters provided.
 		
-		\noindent\textbf{Disposable Instances or Containers:} Disposable infrastructure will be used to perform the restoration. EC2 instances or containers can be used to quickly and easily deploy the necessary software to perform the restoration (i.e. the correct DB management system). They can also be destroyed afterwards, destroying the data and therefore maintaining confidentiality.
+		\noindent\textbf{Disposable Instances:} Disposable infrastructure will be used to perform the restoration. This will consist of EC2 instances running the necessary DBMS to perform the restoration. They can also be destroyed afterwards, destroying the data and therefore maintaining confidentiality.
 
 	\subsection{Formal Modelling}
 	\subsubsection{Sequence Diagrams}
-	
-		The main function of the systems have been demonstrated below in sequence diagrams. \autoref{fig:seq-run-restore} shows the process of running a single backup restore. This involves a user manually triggering a restoration using the web interface. The trigger a Jenkins job automates the remaining steps. The backup is copied from the backup server to the test restoration server where it is imported to a Database Management System such as MongoDB. A read of the data is then performed to verify that the data is uncorrupted and readable. Finally it is destroyed from the restoration server.
+		The main function of the systems have been demonstrated below in sequence diagrams. \autoref{fig:seq-run-restore} shows the process of running a single backup restore. This involves a user manually triggering a restoration using the web interface. This triggers a Jenkins job which automates the remaining steps:
+		\begin{enumerate}
+			\item Backup copied to \textit{restoration} server;
+			\item Backup decrypted;
+			\item Backup import into DBMS;
+			\item Data read from DB;
+		\end{enumerate}
+		Upon completion the \textit{restoration} server is terminated.
+
+		\autoref{fig:seq-schedule-restore} shows the process of a scheduling regular backup restoration tests. Again, this is triggered by a user from the web interface. The web interface will pass the JSON or XML configuration for a job to the Jenkins server. The server verify the backup server exists before creating the job.
+		
+		\autoref{fig:seq-delete-restore} Show the process of deleting an existing scheduled job. The user triggers this process from the web interface. This sends a delete commands to the Jenkins server via the API to remove the schedule job. The status of the command, indicating a successful or failed restore, is returned to the user.
+		
 		\begin{figure}[H]
 			\setlength{\belowcaptionskip}{15pt plus 3pt minus 2pt}
 			\caption{Run Restore}
@@ -33,8 +46,7 @@
 			\includegraphics[width=\textwidth,keepaspectratio]{sequence-diagram-run-restore}
 			\label{fig:seq-run-restore}
 		\end{figure}
-
-		\noindent \autoref{fig:seq-schedule-restore} shows the process of a scheduling regular backup restoration tests. Again, this is triggered by a user from the web interface. The web interface will pass the JSON or XML configuration for a job to the Jenkins server. The server will then create and save the job. A status indicating whether the job was created successfully is returned to the user. \note[id=RB]{Figure 3 is good too. Maybe here somewhere you could talk about what happens when the scheduled job runs - how does the user get notified about success/failure when they're not currently using the web app?}
+		
 		\begin{figure}[H]
 			\setlength{\belowcaptionskip}{15pt plus 3pt minus 2pt}
 			\caption{Schedule Regular Restore}
@@ -44,7 +56,6 @@
 			\label{fig:seq-schedule-restore}
 		\end{figure}
 		
-		\noindent \autoref{fig:seq-delete-restore} Show the process of deleting an existing scheduled job. This is required if a user not longer want to run scheduled restoration of a particular backup (for example if that backup is non longer needed and deleted). The user must delete the job on the Jenkins server in order to prevent further attempted restorations running. The user triggers this process from the web interface. This sends a delete commands to the Jenkins server via the API to remove the schedule job. The status of the command, indicating a successful or failed restore, is returned to the user. 
 		\begin{figure}[H]
 			\setlength{\belowcaptionskip}{15pt plus 3pt minus 2pt}
 			\caption{Delete Scheduled Restore}
@@ -54,20 +65,25 @@
 			\label{fig:seq-delete-restore}
 		\end{figure}
 	
-	\subsubsection{User Stories}
-		User stories are provided in \autoref{table:user-stories}. There are two users of the system; managers and users.
+	\subsubsection{User Stories} \label{user-stories}
+		User stories are provided in \autoref{table:user-stories}. Two types of system users and their privileges are described below;
 		
-		Managers will have the ability to configure security aspects of the systems. This includes not only granting users access to the system but also adding credentials such as SSH keys and decryption keys. They will also be able to perform all the tasks that a regular user can perform without needing a set of regular user credentials.
-		
-		Regular users of the systems will be able to perform backup restoration after logging in. The will have the ability to run a restore at will and view the results. However, they will also be able to schedule the regular restoration of a backup and view the results of each restore that has occured.
-		
-		These the stories for general user such as running and scheduling restores. Also included are administration user stories. As system is create and destroys infrastructure on AWS, it would be necessary to limit access to the system.
+		\textbf{Managers} control security aspects of the system:
+		\begin{itemize}
+			\item Add and remove regular users;
+			\item Manage SSH keys and decryption keys.
+		\end{itemize}
+		\textbf{Regular Users} will perform the day-to-day tasks of the system:
+		\begin{itemize}
+			\item Perform resorations;
+			\item Schedule restorations;
+			\item View restoration results;
+		\end{itemize}
 		
 		\begin{table}[H]
 			\centering
 			\setlength{\belowcaptionskip}{15pt plus 3pt minus 2pt}
 			\caption{User Stories}
-%			\begin{tabular}{|l|p{0.4\linewidth}|p{0.4\linewidth}|} \hline
 			\begin{tabular}{|l|p{0.1\linewidth}|p{0.35\linewidth}|p{0.35\linewidth}|} \hline
 				\textbf{\#} & \textbf{As a} & \textbf{I want to be able to} & \textbf{so that} \\ \hline
 				US1 & manager & implement a user system & I control who can run backup restores \\ \hline
@@ -102,6 +118,16 @@
 		
 	\subsection{Front End Design}
 	\subsubsection{Wireframes}
+	
+		Wireframes for the frontend are shown below. \autoref{fig:homepage} shows the homepage. It includes the following components:
+		\begin{itemize}
+			\item Form for running a restore;
+			\item Form for creating a restore schedule;
+			\item List of schedules (including links).
+		\end{itemize}
+		\autoref{fig:scheduled} shows the details and past results of a scheduled restore.
+		
+		
 		\begin{figure}[H]
 			\setlength{\belowcaptionskip}{15pt plus 3pt minus 2pt}
 			\caption{Homepage}

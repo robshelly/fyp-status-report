@@ -1,3 +1,5 @@
+% Word count: 887
+
 \section{Technologies}
 
 \subsection{Docker}
@@ -6,28 +8,22 @@ Docker is a container platform for building and managing applications. This proj
 The modularity of software makes Docker images appealing for this project. It will allow testing various data base types (e.g. MongoDB, MySQL) through it's software agnostic feature, by deploying an image with the corresponding DBMS software.
 
 \subsection{Amazon Web Services}
-The project will make extensive use of Amazon Web Services (AWS) with most or possibly all of the systems infrastructure deployed on AWS. More specifically the project will make use of two specific services; Elastic Compute Cloud (EC2) and EC2 Containers Service (ECS).
+The project will make extensive use of Amazon Web Services (AWS) with most or possibly all of the systems infrastructure deployed on AWS, particularly using EC2 and ECS.
 
 EC2 is Amazon's compute service. It allows easy deployment and management of virtual compute resources within the cloud. The flexibility of operating systems, virtual machines (or instances as they are known in AWS) and size of volume of storage make it ideal for this project \citep{ec2}. It will allow the system to create instances with only the necessary resources required (i.e. memory and storage) to test the restoration of a given backup. This keeps the cost of testing to a minimum in keeping with Aim \ref{ao3}.
 
 ECS is Amazon's container management service. It allows Docker images to be easily deployed to and run on  EC2 instances without the need to install Docker on the instances. ECS takes care of much of the container management issues that would arise when deploying a services if implemented through Docker alone. This includes managing port mappings between container ports and host ports, ensuring all containers are accessible if necessary. There is no added cost for using ECS. i.e. the customer only pays for the EC2 instances \citep{ecs}. 
 
-ECS is an appealing platform for running Docker images for the following reasons.
-\begin{itemize}
-	\item Images can be deployed on EC2 instances, meaning there is no need to install Docker on the instance, without any extra charge.
-	\item Containers are created within the customers own EC2 instances, meaning they are not exposed to other AWS customers. The are secured by the same infrastructure created by the customer for their instances, for example Virtual Private Clouds (VPCs) and Security Groups.
-\end{itemize}
-
-AWS also features a  command line interface for building, modifying and destroying infrastructure across all of it's service, including EC2 and ECS. This provides an programmatic method of creating the resources necessary to perform test restorations. The ability to do so allows for the automation of the infrastructure creation and destruction (after testing). This is an objective of the project set out in Aim \ref{ao1}. 
+\label{aws-cli} AWS also features a command line interface for building, modifying and destroying infrastructure across all of it's service, including EC2 and ECS. This provides an programmatic method of creating the resources necessary to perform test restorations. The ability to do so allows for the automation of the infrastructure creation and destruction (after testing). This makes AWS an ideal platform for this project as automation is an objective of the project set out in Aim \ref{ao1}. 
 
 
 \subsection{Jenkins}
-Jenkins is an automated build server. It can be used to implement continuous integration (CI) and continuous delivery (CD). Configuration and management of the server can be achieved using both a web interface and an API. Jenkins service is also extensible through a library of plugins \citep{jenkins}. One plugin which will be of particular interest to this project is the Pipeline plugin. It allows the creation of pipeline as code. This means that for this project, pipelines can be used to create EC2 instances and deploy the necessary Docker images using ECS in order to test backup.
+Jenkins is an automated build server used to implement continuous integration (CI) and continuous delivery (CD). Configuration and management of the server can be achieved using both a web interface and an API. Jenkins is also extensible through a library of plugins \citep{jenkins}.
  
-Jenkins was chosen as a backend service for this project as it, along with it's library of plugins, presents many useful features which will be beneficial to the implementation of the system. These include the following:
+Jenkins was chosen as a backend service for this project as it, along with it's library of plugins, presents many useful features which will be beneficial to the implementation of the system:
 \begin{itemize}
 	\item A built in email notification system which can be used to notify users of silently failed backups. This provided the functionality to implement a satisfactory solution to Aim \ref{ao2};
-	\item A Credentials plugin which provides a means of storing various credentials in various forms (e.g. username/password pairs, SSH keys) along with a standard API for Jenkins and other plugins to access and use these credentials \citep{connolly}. This provides a secure manner for using SSH keys for backups servers as well as encryption keys for sensitive backups. This is a key objective of the project outlined in Aim \ref{ao4}.
+	\item \label{creds-plugin}A Credentials plugin which provides a means of storing various credentials in various forms (e.g. username/password pairs, SSH keys) along with a standard API for Jenkins and other plugins to access and use these credentials \citep{connolly}. This provides a secure manner for using SSH keys for backups servers as well as encryption keys for sensitive backups. This is a key objective of the project outlined in Aim \ref{ao4}.
 	\item The ability to schedule jobs to run at regular intervals will provide the functionality described in Aim \ref{ao1}. This eliminates the need for the development of a scheduling system in order to fulfil the systems requirements. 
 	\item The REST API can be used to by a user-friendly web based frontend, allowing users who unfamiliar with Jenkins or AWS to perform test restorations. 
 \end{itemize}
