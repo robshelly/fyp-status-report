@@ -2,17 +2,17 @@
 
 \section{Summary}
 	\subsection{Review of Work Completed}
-	As part of the research phase of the project a number if initial task have been completed:
+	As part of the research phase of the project a number \replaced[id=RB]{of}{if} initial task\added[id=RB]{s} have been completed:
 	\begin{itemize}
 		\item A Jenkins server has been deployed to AWS for use during POCs;
-		\item a CI/CD workflow for the frontend was created for fronted which can deploy the frontend to ECS;
+		\item a CI/CD workflow for the frontend was created \deleted[id=RB]{for fronted} which can deploy the frontend to ECS;
 		\item A backup validation POC has been completed which demonstrated the feasibility of performing backups restorations and verified the ability to validate the data to the extent that users can be satisfied the backups are working;
 		\item A user-rules POC was carried out which verified that users will be able to run restorations via a simple and user-friendly interface, abstracting the implementation of the validation process;
 		\item A security POC was to demonstrate that the proposed system can be applied to encrypted backups, decrypting them for validation in a secure manner.
 	\end{itemize}
 	
 	\subsection{Work to Complete}
-	The next steps for the project are outline below in the order in which they will be implemented:
+	The next steps for the project are outline\added[id=RB]{d} below in the order in which they will be implemented:
 	\begin{enumerate}
 		\item Integrate each of the three POCs to provide a skeleton system for further development. This will consist of the following tasks:
 		\begin{itemize}
@@ -23,3 +23,5 @@
 		\item Commence the first sprint, choosing a number of user stories from the top of the backlog;
 		\item Begin working on the user stories as per sprint goals.
 	\end{enumerate}
+    
+    \note[id=RB]{This section is perfect, sums everything up very concisely.}
