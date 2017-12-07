@@ -95,7 +95,7 @@ In order to asses the technical feasibility of this project three \textit{Proof 
 	As GPG keys are managed by keyrings they cannot be stored in Jenkins using the Credentials plugin nor can they be used to decrypt remote files. For this reason, the GPG key was imported into a keyring on the \textit{restoration} server. This enable\added[id=RB]{d} \deleted[id=RB]{to} successful decryption of the file.
 	
 	\subsubsection{Results}
-	Although the use of the keys was not imlemented as originally planned, this POC demonstrated that the system in it's current architecture can successfully copy an encrypted backupfile to the \textit{restoration} server where it is decrypted. During development some aspects of this implementation can be explorer further:
+	Although the use of the keys was not implemented as originally planned, this POC demonstrated that the system in it's current architecture can successfully copy an encrypted backup file to the \textit{restoration} server where it is decrypted. During development some aspects of this implementation can be explorer further:
 	\begin{itemize}
 		\item Security: Automating the provision and destruction of the \textit{restoration} server will ensure that the private key is not left unnecessarily on servers in the cloud. 
 	\end{itemize}
