@@ -2,15 +2,15 @@
 
 \section{Methodology}
 	\subsection{Agile}
-	The design methodology chosen for this project is Agile. Agile takes an iterative approach to designing and deliver\replaced[id=RB]{ing}{y} products. It's a goal driven methodology that aims to build and deliver software incrementally from the beginning of the project, in contrast with traditional approaches such as Waterfall which deliver in one final stage. A notable aspect of Agile is user stories. The project is broken into small sections of functionality which can be independently developed and delivered upon completion \citep{rasmusson}. A number of user stories have been describe \hyperref[user-stories]{above}, detailing the main requirements of this project. 
+	The design methodology chosen for this project is Agile. Agile takes an iterative approach to designing and delivering products. It's a goal driven methodology that aims to build and deliver software incrementally from the beginning of the project, in contrast with traditional approaches such as Waterfall which deliver in one final stage. A notable aspect of Agile is user stories. The project is broken into small sections of functionality which can be independently developed and delivered upon completion \citep{rasmusson}. A number of user stories have been describe \hyperref[user-stories]{above}, detailing the main requirements of this project. 
 	
 	\subsubsection{Scrum}
 	
 	A particular Agile framework which will be used for this project is Scrum. Scrum defines terms used to organise development:
 	\begin{itemize}
-		\item \textbf{Product Backlog:} This is an prioritised list of jobs which needs to be completed. In \replaced[id=RB, remark="its" is one exception where there's no apostrophe to indicate possession; only use the apostrophe if it's an abbreviation of "it is"]{its}{it's} entirety, it represents the full development of the project, i.e. all the work required to deliver the final product.
+		\item \textbf{Product Backlog:} This is an prioritised list of jobs which needs to be completed. In its entirety, it represents the full development of the project, i.e. all the work required to deliver the final product.
 		\item \textbf{Sprints:} Development is divided into a number of equal length periods (often two or three weeks) of work known as sprints. Each sprint has it's own small goal to achieve, with some items from the head of the product backlog being developed. This project will be organized into six sprints of two weeks each.
-		\item \textbf{Daily Scrum:} The daily scrum, also known as daily standup, is a daily meeting at which team members meet to discuss progress and address issues encountered.
+		\item \textbf{Daily Scrum:} The daily scrum, also known as daily \textit{standup}, is a daily meeting at which team members meet to discuss progress and address issues encountered.
 		\item \textbf{Sprint Reviews:} At the end of each sprint a review of the work completed is carried out. The next sprint will then begin, developing the next group of items from the backlog being\citep{scrum}.
 	\end{itemize}
 	Also defined area a number of roles:
@@ -19,10 +19,10 @@
 		\item \textbf{Scrum Master:} The scrum master is responsible for maintaining focus on the current batch of backlog items during each sprint \cite{agile}.
 	\end{itemize}
 	
-	Scrum is an ideal model for developing this project. The Product Owner will be Red Hat and the role of scrum master will be played by the project supervisor. Development will broken into six sprints of two weeks. However, as this is not a team project, daily stand-up meetings will not be held. Rather, meeting with the scrum master will on weekly basis and meetings with the prodcut owner will be on a similar schedule as needed. The \replaced[id=RB]{user}{suer} stories which have been used to des\added[id=RB]{c}ribe the requirements of the project will be organised into th product backlog.
+	Scrum is an ideal model for developing this project. The Product Owner will be Red Hat and the role of scrum master will be played by the project supervisor. Development will broken into six sprints of two weeks. However, as this is not a team project, daily stand-up meetings will not be held. Rather, meeting with the scrum master will on weekly basis and meetings with the product owner will be on a similar schedule as needed. The user stories which have been used to describe the requirements of the project will be organised into th product backlog.
 	
 	\subsection{CI/CD with Jenkins}
-	Continuous Integration/Continuous Deployment (or continuous Delivery) is a development concept that focuses on the frequent and automated testing building and releasing of code. It aims to remove the large workload required when it is time \replaced[id=RB]{to}{tp} release a version or update of a product by performing the same process in a automated manner on every code commit \citep{pittet}.
+	Continuous Integration/Continuous Deployment (or continuous Delivery) is a development concept that focuses on the frequent and automated testing building and releasing of code. It aims to remove the large workload required when it is time to release a version or update of a product by performing the same process in a automated manner on every code commit \citep{pittet}.
 	
 	Continuous integration refers to preparing the code for release and often as code commits are performed. For example, running tests and building Docker images on each commit meaning code is prepared for release at each stage of development, instead of when it come to release time \citep{ramos}.
 	Continuous Deployment is a step beyond Continuous Integration. After the code is built it is deployed to a server. However, this may be a development server. Pushing the built code to production requires a manual trigger. Continuous Delivery automates this final manual trigger, meaning the entire process of moving code through testing, building and deployment to production is entirely automated \citep{ellingwood}.
@@ -37,8 +37,8 @@
 		\label{fig:cicd}
 	\end{figure}
 	
-	\subsection{JIRA}
-	In conjunction with the Scrum framework the Jira development tool will be used. Jira is \deleted[id=RB]{a} a \replaced[id=RB]{project}{porject} management tool which allow the creation and tracking of tasks or issues. The product backlog, comprising of the project user stories, can be created within the management tool with tasks created for each of the stories on the backlog. Each task can then be prioritised as the in the manner chosen by the product owner \citep{jira}.
+	\subsection{Jira}
+	In conjunction with the Scrum framework the Jira development tool will be used. Jira is a project management tool which allows the creation and tracking of tasks or issues. The product backlog, comprising of the project user stories, can be created within the management tool with tasks created for each of the stories on the backlog. Each task can then be prioritised as the in the manner chosen by the product owner \citep{jira}.
 	
 	A number of Jira's feature make it an ideal tool to aid in the organisation of this project:
 	\begin{itemize}

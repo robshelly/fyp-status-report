@@ -66,9 +66,7 @@
 		\end{figure}
 	
 	\subsubsection{User Stories} \label{user-stories}
-    
-    \note[id=RB]{The expanded user stories in Table 1 look good. The table appears to overlap the page number.}
-    
+   
 		User stories are provided in \autoref{table:user-stories}. Two types of system users and their privileges are described below;
 		
 		\textbf{Managers} control security aspects of the system:
@@ -84,11 +82,12 @@
 		\end{itemize}
 		
 		\begin{table}[H]
+			\small
 			\centering
 			\setlength{\belowcaptionskip}{15pt plus 3pt minus 2pt}
 			\caption{User Stories}
                          
-			\begin{tabular}{|l|p{0.1\linewidth}|p{0.35\linewidth}|p{0.35\linewidth}|} \hline
+			\begin{tabular}{|l|l|p{0.39\linewidth}|p{0.39\linewidth}|} \hline
 				\textbf{\#} & \textbf{As a} & \textbf{I want to be able to} & \textbf{so that} \\ \hline
 				US1 & manager & implement a user system & I control who can run backup restores \\ \hline
 				US1.1 & manager & add my team members to the system & they can run backup restores \\ \hline
@@ -104,7 +103,7 @@
 				US5 & user & logout & I avoid potential unauthorised access \\ \hline
 				US6 & user & run a test restoration of a backup & I can verify that the backup exists, is a valid file, and is readable \\ \hline
 				US6.1 & user & run a test by filling out a simple form with basic parameters (location, filename) of the backup to test & I can easily run a restore of a specific backup without needing to worry about the implementation \\ \hline
-				US6.2 & user & view the current status \added[id=RB]{of} a running restoration & I can review the progress of long running restores \\ \hline
+				US6.2 & user & view the current status of a running restoration & I can review the progress of long running restores \\ \hline
 				US6.3 & user & check if a backup failed or succeeded & I can immediately investigate any failed backups \\ \hline
 				US7 & user & create a schedule of automated restores for a given backup & I don't have to manually execute them myself on a regular basis \\ \hline
 				US7.1 & user & choose the frequency of automated restores within a schedule, from daily through weekly to monthly & I control how often different backups are tested \\ \hline

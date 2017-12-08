@@ -1,7 +1,7 @@
 % Word count: 852
 
 \section{Technical Feasibility}
-In order to asses the technical feasibility of this project three \textit{Proof of Concepts} \added[id=RB]{(POCs)}have been defined.
+In order to asses the technical feasibility of this project three \textit{Proof of Concepts} (POCs) have been defined.
 
 \begin{POC}
 	\item \label{poc1} \textbf{Validation:} How will a restoration be validated? What criteria is needed for a backup to be deemed successful?
@@ -92,12 +92,11 @@ In order to asses the technical feasibility of this project three \textit{Proof 
 	\end{figure}
 	
 	\subsubsection{Issues Encountered}
-	As GPG keys are managed by keyrings they cannot be stored in Jenkins using the Credentials plugin nor can they be used to decrypt remote files. For this reason, the GPG key was imported into a keyring on the \textit{restoration} server. This enable\added[id=RB]{d} \deleted[id=RB]{to} successful decryption of the file.
+	As GPG keys are managed by keyrings they cannot be stored in Jenkins using the Credentials plugin nor can they be used to decrypt remote files. For this reason, the GPG key was imported into a keyring on the \textit{restoration} server. This enabled successful decryption of the file.
 	
 	\subsubsection{Results}
 	Although the use of the keys was not implemented as originally planned, this POC demonstrated that the system in it's current architecture can successfully copy an encrypted backup file to the \textit{restoration} server where it is decrypted. During development some aspects of this implementation can be explorer further:
 	\begin{itemize}
 		\item Security: Automating the provision and destruction of the \textit{restoration} server will ensure that the private key is not left unnecessarily on servers in the cloud. 
 	\end{itemize}
-	\note[id=RB]{This section is very good; concisely sums up the work done so far and the consistent layout for each POC makes it flow well.}
 	
