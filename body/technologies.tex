@@ -1,20 +1,21 @@
 % Word count: 887
 
 \section{Technologies}
-\note[id=RB]{I've been thinking about word count as I've been reading through the document, and this is the only section where I think you could make some cuts; particularly, the AWS section might be longer than it needs to be. So I would suggest reducing this section a bit, but don't worry about the rest - you'll be close enough to the word count that it won't be an issue!}
+
 \subsection{Docker}
 Docker is a container platform for building and managing applications. This project is interested not in Dockers platform but rather in the Docker images that run on the platform. A container image is a modular piece of software. It encapsulates all the code and tools needed to run the software packaged in the image. The image can then be run in a container on any environment using a container platform or service. Thus, it runs independent of the hardware or operating system. The container also isolates the software from other images and software running within the environment \citep{docker}.
 
-The modularity of software makes Docker images appealing for this project. It will allow testing various data base types (e.g. MongoDB, MySQL) through it's software agnostic feature, by deploying an image with the corresponding DBMS software.
+The ability to build applications as OS agnostic images makes is appealing for this project. It allows the frontend application to be built as an image and run on any system running Docker, for example an AWS EC2 instance. 
+
 
 \subsection{Amazon Web Services}
 The project will make extensive use of Amazon Web Services (AWS) with most or possibly all of the systems infrastructure deployed on AWS, particularly using EC2 and ECS.
 
 EC2 is Amazon's compute service. It allows easy deployment and management of virtual compute resources within the cloud. The flexibility of operating systems, virtual machines (or instances as they are known in AWS) and size of volume of storage make it ideal for this project \citep{ec2}. It will allow the system to create instances with only the necessary resources required (i.e. memory and storage) to test the restoration of a given backup. This keeps the cost of testing to a minimum in keeping with Aim \ref{ao3}.
 
-ECS is Amazon's container management service. It allows Docker images to be easily deployed to and run on  EC2 instances without the need to install Docker on the instances. ECS takes care of much of the container management issues that would arise when deploying a services if implemented through Docker alone. This includes managing port mappings between container ports and host ports, ensuring all containers are accessible if necessary. There is no added cost for using ECS. i.e. the customer only pays for the EC2 instances \citep{ecs}. 
+ECS is Amazon's container management service. It allows Docker images to be easily deployed to and run on  EC2 instances, taking care of Docker installation and management, for example managing port mappings between containers and the host. There is no added cost for using ECS. i.e. the customer only pays for the EC2 instances \citep{ecs}. 
 
-\label{aws-cli} AWS also features a command line interface for building, modifying and destroying infrastructure across all of it's service, including EC2 and ECS. This provides an programmatic method of creating the resources necessary to perform test restorations. The ability to do so allows for the automation of the infrastructure creation and destruction (after testing). This makes AWS an ideal platform for this project as automation is an objective of the project set out in Aim \ref{ao1}. 
+\label{aws-cli} AWS also features a command line interface for building, modifying and destroying infrastructure across all of it's services, providing a programmatic method of creating the resources. The ability to do so allows for the automation of the infrastructure creation and destruction. This makes AWS an ideal platform for this project as automation is an objective of the project set out in Aim \ref{ao1}. 
 
 
 \subsection{Jenkins}
@@ -23,9 +24,9 @@ Jenkins is an automated build server used to implement continuous integration (C
 Jenkins was chosen as a backend service for this project as it, along with it's library of plugins, presents many useful features which will be beneficial to the implementation of the system:
 \begin{itemize}
 	\item A built in email notification system which can be used to notify users of silently failed backups. This provided the functionality to implement a satisfactory solution to Aim \ref{ao2};
-	\item \label{creds-plugin}A Credentials plugin which provides a means of storing various credentials in various forms (e.g. username/password pairs, SSH keys) along with a standard API for Jenkins and other plugins to access and use these credentials \citep{connolly}. This provides a secure manner for using SSH keys for backups servers as well as encryption keys for sensitive backups. This is a key objective of the project outlined in Aim \ref{ao4}.
-	\item The ability to schedule jobs to run at regular intervals will provide the functionality described in Aim \ref{ao1}. This eliminates the need for the development of a scheduling system in order to fulfil the systems requirements. 
-	\item The REST API can be used to by a user-friendly web based frontend, allowing users who unfamiliar with Jenkins or AWS to perform test restorations. 
+	\item \label{creds-plugin}A Credentials plugin which provides a means of storing various credentials in various forms (e.g. username/password pairs, SSH keys) along with a standard API for Jenkins and other plugins to access and use these credentials \citep{connolly}. This provides a secure manner for using SSH keys for backup servers. This is a key objective of the project outlined in Aim \ref{ao4}.
+	\item The ability to schedule jobs to run at regular intervals will provide the functionality described in Aim \ref{ao1}. This eliminates the need for the development of a scheduling system. 
+	\item The REST API can be used by a user-friendly web based frontend, allowing users unfamiliar with Jenkins or AWS to perform test restorations. 
 \end{itemize}
 
 
@@ -37,5 +38,5 @@ The default package manager of Node is \textit{npm} (for Node Package manager). 
 Although any of a number of frameworks could have been used, for example Django, Node was chosen for this project due it's light-weight design and extensibility through \textit{npm}, including the aforementioned Jenkins API wrappers.
  
 \subsection{React}
-The UI element of the frontend will be built using React, a JavaScript library available through \textit{npm} for building user interfaces. React is developed to work independently of other technologies, meaning it can integrated easily with Node and other \textit{npm} packages without the need for refactoring. React builds UI's as a set of components, each managing and their own state and implementing their own render function. This allows fast and efficient of rendering as data changes as only components that are updated will be re-rendered.
+The UI element of the frontend will be built using React, a JavaScript library available through \textit{npm} for building user interfaces. React is developed to work independently of other technologies, meaning it can integrated easily with Node and other \textit{npm} packages without the need for refactoring. React builds UIs as a set of components, each managing and their own state and implementing their own render function. This allows fast and efficient of rendering as data changes as only components that are updated will be re-rendered.
 

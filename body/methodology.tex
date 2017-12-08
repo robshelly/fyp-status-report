@@ -19,7 +19,7 @@
 		\item \textbf{Scrum Master:} The scrum master is responsible for maintaining focus on the current batch of backlog items during each sprint \cite{agile}.
 	\end{itemize}
 	
-	Scrum is an ideal model for developing this project. The Product Owner will be Red Hat and the role of scrum master will be played by the project supervisor. Development will broken into six sprints of two weeks. However, as this is not a team project, daily stand-up meetings will not be held. Rather, meeting with the scrum master will on weekly basis and meetings with the product owner will be on a similar schedule as needed. The user stories which have been used to describe the requirements of the project will be organised into th product backlog.
+	Scrum is an ideal model for developing this project. The Product Owner will be Red Hat and the role of scrum master will be played by the project supervisor. Development will broken into six sprints of two weeks. However, as this is not a team project, daily stand-up meetings will not be held. Rather, meeting with the scrum master will on weekly basis and meetings with the product owner will be on a similar schedule as needed. The user stories which have been used to describe the requirements of the project will be organised into the product backlog.
 	
 	\subsection{CI/CD with Jenkins}
 	Continuous Integration/Continuous Deployment (or continuous Delivery) is a development concept that focuses on the frequent and automated testing building and releasing of code. It aims to remove the large workload required when it is time to release a version or update of a product by performing the same process in a automated manner on every code commit \citep{pittet}.
@@ -27,7 +27,7 @@
 	Continuous integration refers to preparing the code for release and often as code commits are performed. For example, running tests and building Docker images on each commit meaning code is prepared for release at each stage of development, instead of when it come to release time \citep{ramos}.
 	Continuous Deployment is a step beyond Continuous Integration. After the code is built it is deployed to a server. However, this may be a development server. Pushing the built code to production requires a manual trigger. Continuous Delivery automates this final manual trigger, meaning the entire process of moving code through testing, building and deployment to production is entirely automated \citep{ellingwood}.
 	
-	For this project, CI/CD (continuous development in this case) will be implemented using a Jenkins automated build server.Each time a commit of the frontend source code is push to github, the app will be built as a Docker image and deployed to ECS by Jenkins on every code commit. This workflow is shownin \autoref{fig:cicd}.
+	For this project, CI/CD (continuous development in this case) will be implemented using a Jenkins automated build server.Each time a commit of the frontend source code is push to GitHub, the app will be built as a Docker image and deployed to ECS by Jenkins on every code commit. This workflow is shown in \autoref{fig:cicd}.
 	
 	\begin{figure}[H]
 		\setlength{\belowcaptionskip}{15pt plus 3pt minus 2pt}
@@ -47,9 +47,22 @@
 	\end{itemize}
 	
 	\subsection{Completion and Handover}
-	Due to the goal driven and iterative aspects of Agile methodology a clear idea of a completed project is required. This will provide a the final goal to work towards and clear understanding of when this goal is reached. Accordingly, a \textit{Definition of Done} is a a key element of Scrum \citep{panchal}. The definition of done for this project shall have the following stipulations:
+	Due to the goal driven and iterative aspects of Agile methodology a clear idea of a completed project is required. This will provide a the final goal to work towards and a clear understanding of when this goal is reached. Accordingly, a \textit{Definition of Done} is a a key element of Scrum \citep{panchal}. The design methodology for this project will have the following stipulations:
+	
+	\noindent The \textit{Definition of Done} for each sprint will be as follows:
+	
 	\begin{itemize}
-		\item All user stories implemented;
+		\item Each issue (user story) has been tracked within Jira.
+		\item Each issue is implemented;
+		\item Each code for each issue has been documented.
+		\item A sprint review meeting has been held;		
+	\end{itemize}
+	
+	\noindent The \textit{Definition of Done} for the project  will be as follows:
+	
+	\begin{itemize}
+		\item User stories have been categorised as \textit{Functional Goals} and \textit{Stretch Goals} in an initial backlog refinement;
+		\item All \textit{functional} user stories have been implemented with considerations made for \textit{stretch goals};
 		\item All code committed to GitHub repository;
 		\item All code documented;
 		\item Latest image of web app deployed to ECS through CI/CD;
@@ -57,12 +70,10 @@
 		\item A working deployment of the entire system is running and available for demonstration.
 	\end{itemize}
 	 
-	 The following deliverables will be required for completion of the project. 
+	 \noindent The following deliverables will be required for completion of the project. 
 	 \begin{itemize}
 	 	\item Presentation of the project;
 	 	\item Project report;
 	 	\item Descriptive poster of project;
 	 	\item Demonstrative video of project feature.
 	 \end{itemize}
-     
-     \note[id=RB]{This is looking pretty good - you could consider splitting it up into the definition of done for a sprint and the definition of done for the project? Also, check this with Leigh (if you haven't already) to make sure that it meets RedHat's requirements.}
