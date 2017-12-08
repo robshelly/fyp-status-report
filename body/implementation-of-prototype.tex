@@ -4,7 +4,7 @@
 In order to asses the technical feasibility of this project three \textit{Proof of Concepts} (POCs) have been defined.
 
 \begin{POC}
-	\item \label{poc1} \textbf{Validation:} How will a restoration be validated? What criteria is needed for a backup to be deemed successful?
+	\item \label{poc1} \textbf{Validation:} How will a restoration be validated? What criteria are needed for a backup to be deemed successful?
 	\item \label{poc2} \textbf{User Rules:} How will a user use the system? Can the the implementation of a backup restoration be abstracted from the user by means of a user friendly frontend?
 	\item \label{poc3} \textbf{Security:} How will the system deal with encrypted backups? Can the Jenkins server safely handle credentials and decrypt backups in order to perform the test restoration?
 \end{POC}
@@ -33,7 +33,7 @@ In order to asses the technical feasibility of this project three \textit{Proof 
 	\end{figure}
 	
 	\subsubsection{Issues Encountered}
-	In order to move the backup securely from the \textit{backup} server to the \textit{restoration} server the the correct SSH credentials were needed. These were securely implemented in Jenkins using the \hyperref[creds-plugin]{aforementioned} Credentials Plugin. This allows Jenkins to securely communicate with both servers.
+	In order to move the backup securely from the \textit{backup} server to the \textit{restoration} server the correct SSH credentials were needed. These were securely implemented in Jenkins using the \hyperref[creds-plugin]{aforementioned} Credentials Plugin. This allows Jenkins to securely communicate with both servers.
 	
 	\begin{figure}[H]
 		\caption{SSH Credentials Stored in Jenkins}
